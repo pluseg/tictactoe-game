@@ -1486,6 +1486,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@reduxjs/toolkit@npm:^1.2.5":
+  version: 1.2.5
+  resolution: "@reduxjs/toolkit@npm:1.2.5"
+  dependencies:
+    immer: ^4.0.1
+    redux: ^4.0.0
+    redux-devtools-extension: ^2.13.8
+    redux-immutable-state-invariant: ^2.1.0
+    redux-thunk: ^2.3.0
+    reselect: ^4.0.0
+  checksum: ac6cdbea776c0c09f5d7b9dd0160118cddd9679e5733ceb0ae2b3359c2658c389335791fc7f2d878555b5dd0812016f0602b8030503e22871405db8fbce991aa
+  languageName: node
+  linkType: hard
+
 "@sheerun/mutationobserver-shim@npm:^0.3.2":
   version: 0.3.2
   resolution: "@sheerun/mutationobserver-shim@npm:0.3.2"
@@ -6608,6 +6622,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"immer@npm:^4.0.1":
+  version: 4.0.2
+  resolution: "immer@npm:4.0.2"
+  checksum: 0599d5f1654e47c22023e3cc54f01d95336edb319b020042c6a19cb14746cfc3aa72217f4692fb7e233071ac458f22e35af994562a2c20738e1fa00a7a2cf478
+  languageName: node
+  linkType: hard
+
 "import-cwd@npm:^2.0.0":
   version: 2.1.0
   resolution: "import-cwd@npm:2.1.0"
@@ -6755,7 +6776,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"invariant@npm:^2.2.2, invariant@npm:^2.2.4":
+"invariant@npm:^2.1.0, invariant@npm:^2.2.2, invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
   dependencies:
@@ -7898,7 +7919,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"json-stringify-safe@npm:~5.0.1":
+"json-stringify-safe@npm:^5.0.1, json-stringify-safe@npm:~5.0.1":
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
   checksum: b3d9281f42e16fab884eaa6294cba891730f38e1e64049d3bfd41057878b52d53a0be309ff8a4968c30efc5065585b7c9cabdc05336d7d277866f4b28241a924
@@ -11131,6 +11152,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "react-tictactoe@workspace:."
   dependencies:
+    "@reduxjs/toolkit": ^1.2.5
     "@testing-library/jest-dom": ^4.2.4
     "@testing-library/react": ^9.3.2
     "@testing-library/user-event": ^7.1.2
@@ -11270,6 +11292,25 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"redux-devtools-extension@npm:^2.13.8":
+  version: 2.13.8
+  resolution: "redux-devtools-extension@npm:2.13.8"
+  peerDependencies:
+    redux: ^3.1.0 || ^4.0.0
+  checksum: d86ed347bae484914721dbdba14ff915238628bd8830556b2a852ed13e9c5a7fe0d74eb4f12fe66ace46e27ac8b07b8eecec68018bc4675f4408fb3256f933ab
+  languageName: node
+  linkType: hard
+
+"redux-immutable-state-invariant@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "redux-immutable-state-invariant@npm:2.1.0"
+  dependencies:
+    invariant: ^2.1.0
+    json-stringify-safe: ^5.0.1
+  checksum: 0bf99206224d5d0930bd18dd0626c5b895d49fd018ba20fa94c50cdda91e7e3cea047fa56481cc85c8788bf51af8eae2f0e797f76df6eec4d1183104f6b12e43
+  languageName: node
+  linkType: hard
+
 "redux-thunk@npm:^2.3.0":
   version: 2.3.0
   resolution: "redux-thunk@npm:2.3.0"
@@ -11277,7 +11318,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"redux@npm:^4.0.5":
+"redux@npm:^4.0.0, redux@npm:^4.0.5":
   version: 4.0.5
   resolution: "redux@npm:4.0.5"
   dependencies:
@@ -11517,6 +11558,13 @@ fsevents@^1.2.7:
   version: 1.0.0
   resolution: "requires-port@npm:1.0.0"
   checksum: f60f1255d7f028cf03b253ad101bb60e15865d42015fc828e257de445a7709c816a26fee3f1d184a81ef66d37e4e5d21d9b94bb652a739c338a34b5e8ed8daa1
+  languageName: node
+  linkType: hard
+
+"reselect@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "reselect@npm:4.0.0"
+  checksum: 417d9988ad7a80fc9836dcf008dfa756357f776c786874972c843f91db580558cd68b908e2399ca397ea956a313d61843379988c6d95017f8d0d1e14c6ad67c6
   languageName: node
   linkType: hard
 

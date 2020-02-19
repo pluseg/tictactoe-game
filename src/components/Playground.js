@@ -6,7 +6,8 @@ class Playground extends React.Component {
   renderCells() {
     return this.props.cells.map((row, i) => {
       const renderedRow = row.map((cell, j) => {
-        return <PlaygroundCell i={i} j={j} value={cell} />;
+        const key = `${i}_${j}`;
+        return <PlaygroundCell key={key} i={i} j={j} value={cell} />;
       });
 
       return <div key={i} className="row">{renderedRow}</div>;

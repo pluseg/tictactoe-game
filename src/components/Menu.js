@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startGame, resetGame } from '../actions';
+import { startNewGame } from '../features/game/gameSlice';
 import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../constants';
 
 const Menu = props => {
@@ -10,7 +10,7 @@ const Menu = props => {
       return (
         <button
           className="positive ui button"
-          onClick={() => props.startGame()}
+          onClick={() => props.startNewGame()}
         >
           Start
         </button>
@@ -21,7 +21,7 @@ const Menu = props => {
   const renderResetButton = () => {
     if (props.step === STEP_GAME) {
       return (
-        <button className="ui button" onClick={() => props.resetGame()}>
+        <button className="ui button" onClick={() => props.startNewGame()}>
           Reset
         </button>
       );
@@ -40,4 +40,4 @@ const mapStateToProps = state => {
   return {step: state.game.step};
 };
 
-export default connect(mapStateToProps, { startGame, resetGame })(Menu);
+export default connect(mapStateToProps, { startNewGame})(Menu);
