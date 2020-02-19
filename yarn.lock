@@ -11139,6 +11139,7 @@ fsevents@^1.2.7:
     react-redux: ^7.1.3
     react-scripts: 3.3.1
     redux: ^4.0.5
+    redux-thunk: ^2.3.0
   languageName: unknown
   linkType: soft
 
@@ -11266,6 +11267,13 @@ fsevents@^1.2.7:
     indent-string: ^4.0.0
     strip-indent: ^3.0.0
   checksum: 55983b363f96f5b55663c001c1b9cb4e090d82e18ce6baad1076d6aac400306f8d2f45e9bdaf11e7a4400660b95a81e3251eb2c8cfc6df175105be5bb778fcd4
+  languageName: node
+  linkType: hard
+
+"redux-thunk@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "redux-thunk@npm:2.3.0"
+  checksum: 7c7786e0c0d764bcc169f14750c4b29ecc635ee956e392c45d8cee1c9afd0fc4ea9f9787c090a26df851591d6da3ccaffb45c9c1675fa2b3c9362b58b640fd5f
   languageName: node
   linkType: hard
 

@@ -1,7 +1,8 @@
 import {
   GAME_START,
   GAME_RESET,
-  GAME_MOVE
+  GAME_MOVE,
+  GAME_CALCULATE_RESULT
 } from './types';
 
 export const startGame = () => {
@@ -16,9 +17,7 @@ export const resetGame = () => {
   };
 };
 
-export const makeMove = (i, j) => {
-  return {
-    type: GAME_MOVE,
-    payload: {i, j}
-  };
+export const makeMove = (i, j) => dispatch => {
+  dispatch({type: GAME_MOVE, payload: {i, j}});
+  dispatch({type: GAME_CALCULATE_RESULT});
 };

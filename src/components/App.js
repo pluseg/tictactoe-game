@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import GameField from './GameField';
+import Playground from './Playground';
 import Welcome from './Welcome';
 import Menu from './Menu';
 import Results from './Results';
-import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../actions/gameSteps';
+import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../constants';
 
 class App extends React.Component {
   renderCurrentStep() {
@@ -13,7 +13,7 @@ class App extends React.Component {
         return <Welcome />;
       case STEP_GAME:
       case STEP_RESULTS:
-        return <GameField />;
+        return <Playground />;
       default:
         return <div><i className="asterisk loading icon"></i> Loading...</div>
     }

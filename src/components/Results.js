@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RESULT_TIE, RESULT_CROSS_WIN, RESULT_ZERO_WIN, RESULT_UNKNOWN } from '../actions/gameSteps';
+import { RESULT_TIE, RESULT_CROSS_WIN, RESULT_ZERO_WIN, RESULT_UNKNOWN } from '../constants';
 
 const Results = props => {
   if (props.result === RESULT_UNKNOWN) {

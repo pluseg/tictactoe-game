@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startGame, resetGame } from '../actions';
-import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../actions/gameSteps';
+import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../constants';
 
 const Menu = props => {
   const renderStartButton = () => {
