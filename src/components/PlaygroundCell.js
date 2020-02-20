@@ -14,10 +14,8 @@ const PlaygroundCell = ({value, onClick}) => {
   }
 
   return (
-    <div className="column">
-      <div className="ui segment" onClick={onClick}>
-        {renderCell(value)}
-      </div>
+    <div className="playground-cell" onClick={onClick}>
+      {renderCell(value)}
     </div>
   );
 }
