@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { processMove } from '../features/game/gameSlice';
 import { SYMBOL_CROSS, SYMBOL_ZERO } from '../constants';
 
-const PlaygroundCell = ({i, j, value, processMove}) => {
+const PlaygroundCell = ({value, onClick}) => {
   const renderCell = value => {
     switch (value) {
       case SYMBOL_CROSS:
@@ -17,11 +15,11 @@ const PlaygroundCell = ({i, j, value, processMove}) => {
 
   return (
     <div className="column">
-      <div className="ui segment" onClick={() => processMove(i, j)}>
+      <div className="ui segment" onClick={onClick}>
         {renderCell(value)}
       </div>
     </div>
   );
 }
 
-export default connect(null, { processMove })(PlaygroundCell);
+export default PlaygroundCell;

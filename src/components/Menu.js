@@ -40,4 +40,4 @@ const mapStateToProps = state => {
   return {step: state.game.step};
 };
 
-export default connect(mapStateToProps, { startNewGame})(Menu);
+export default connect(mapStateToProps, { startNewGame })(Menu);
