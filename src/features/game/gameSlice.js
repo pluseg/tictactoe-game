@@ -35,7 +35,7 @@ const gameSlice = createSlice({
     },
     processMove: {
       reducer(state, action) {
-        state.turns += 1;
+        state.turns++;
         const currentSymbol = state.turns % 2 ? SYMBOL_ZERO : SYMBOL_CROSS;
         const {i, j} = action.payload;
         state.cells[i][j] = currentSymbol;
@@ -55,6 +55,7 @@ const gameSlice = createSlice({
 });
 
 gameSlice.actions.makeMove = (i, j) => (dispatch, getState) => {
+  console.log('MAKE MOVE action', i, j)
   if (getState().game.result === RESULT_UNKNOWN && getState().game.cells[i][j] === NO_SYMBOL) {
     dispatch(processMove(i, j));
     dispatch(calculateResult());
