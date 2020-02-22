@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAction } from '@reduxjs/toolkit';
 import calculateResultHelper from './calculateResultHelpers';
 
 import {
@@ -54,13 +54,11 @@ const gameSlice = createSlice({
   }
 });
 
-gameSlice.actions.makeMove = (i, j) => (dispatch, getState) => {
-  console.log('MAKE MOVE action', i, j)
-  if (getState().game.result === RESULT_UNKNOWN && getState().game.cells[i][j] === NO_SYMBOL) {
-    dispatch(processMove(i, j));
-    dispatch(calculateResult());
-  }
-};
+gameSlice.actions.makeMove = createAction('game/makeMove', (i, j) => {
+  return {
+    payload: { i, j }
+  };
+});
 
 export const { startNewGame, processMove, makeMove, calculateResult } = gameSlice.actions;
 
