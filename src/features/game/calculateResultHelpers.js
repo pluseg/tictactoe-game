@@ -4,7 +4,7 @@ import {
   RESULT_TIE,
   RESULT_CROSS_WIN,
   RESULT_ZERO_WIN,
-  RESULT_UNKNOWN
+  RESULT_UNKNOWN,
 } from '../../constants';
 
 export default (cells, turns, winLength) => {
@@ -21,12 +21,13 @@ export default (cells, turns, winLength) => {
       }
       return RESULT_UNKNOWN;
   }
-}
+};
 
 export const findRepeatedSymbol = (cells, requiredLength) => {
   const size = cells[0].length;
-  let symbol, diagonals = {leftUpper: [], rightUpper: []};
+  const diagonals = { leftUpper: [], rightUpper: [] };
 
+  let symbol;
   for (let i = 0; i < size; i++) {
     // Check row
     symbol = findRepeatedSymbolSequence(cells[i], requiredLength);
@@ -35,7 +36,7 @@ export const findRepeatedSymbol = (cells, requiredLength) => {
     }
 
     // Check column
-    let column = [];
+    const column = [];
     for (let j = 0; j < size; j++) {
       column.push(cells[j][i]);
     }
@@ -45,17 +46,17 @@ export const findRepeatedSymbol = (cells, requiredLength) => {
       return symbol;
     }
 
-    diagonals['leftUpper'].push(cells[i][i]);
-    diagonals['rightUpper'].push(cells[i][size - i - 1]);
+    diagonals.leftUpper.push(cells[i][i]);
+    diagonals.rightUpper.push(cells[i][size - i - 1]);
   }
 
   // Check diagonals
-  symbol = findRepeatedSymbolSequence(diagonals['leftUpper'], requiredLength);
+  symbol = findRepeatedSymbolSequence(diagonals.leftUpper, requiredLength);
   if (symbol !== null) {
     return symbol;
   }
 
-  symbol = findRepeatedSymbolSequence(diagonals['rightUpper'], requiredLength);
+  symbol = findRepeatedSymbolSequence(diagonals.rightUpper, requiredLength);
   if (symbol !== null) {
     return symbol;
   }
@@ -66,7 +67,7 @@ export const findRepeatedSymbol = (cells, requiredLength) => {
 export const findRepeatedSymbolSequence = (arr, requiredLength) => {
   for (let i = 0; i < arr.length - requiredLength + 1; i++) {
     let repetitions = 0;
-    let value = arr[i];
+    const value = arr[i];
     for (let j = i; j < i + requiredLength; j++) {
       if (arr[j] !== value) {
         break;
@@ -80,4 +81,4 @@ export const findRepeatedSymbolSequence = (arr, requiredLength) => {
   }
 
   return null;
-}
+};

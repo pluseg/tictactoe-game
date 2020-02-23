@@ -9,7 +9,7 @@ import {
   SYMBOL_ZERO,
   NO_SYMBOL,
   RESULT_UNKNOWN,
-  SIZE
+  SIZE,
 } from '../../constants';
 
 const INITIAL_STATE = {
@@ -18,8 +18,8 @@ const INITIAL_STATE = {
   winLength: 3, // for future flexability. For example, size 15x15 and winLength — 5 in row.
   cells: [],
   turns: 0,
-  result: RESULT_UNKNOWN
-}
+  result: RESULT_UNKNOWN,
+};
 
 const gameSlice = createSlice({
   name: 'game',
@@ -30,19 +30,19 @@ const gameSlice = createSlice({
       state.result = RESULT_UNKNOWN;
       state.turns = 0;
       state.cells = new Array(state.size).fill(NO_SYMBOL).map(
-        () => new Array(state.size).fill(NO_SYMBOL)
+        () => new Array(state.size).fill(NO_SYMBOL),
       );
     },
     processMove: {
       reducer(state, action) {
         state.turns++;
         const currentSymbol = state.turns % 2 ? SYMBOL_ZERO : SYMBOL_CROSS;
-        const {i, j} = action.payload;
+        const { i, j } = action.payload;
         state.cells[i][j] = currentSymbol;
       },
       prepare(i, j) {
-        return { payload: {i, j} };
-      }
+        return { payload: { i, j } };
+      },
     },
     calculateResult(state, action) {
       const result = calculateResultHelper(state.cells, state.turns, state.winLength);
@@ -50,16 +50,16 @@ const gameSlice = createSlice({
         state.result = result;
         state.step = STEP_RESULTS;
       }
-    }
-  }
+    },
+  },
 });
 
-gameSlice.actions.makeMove = createAction('game/makeMove', (i, j) => {
-  return {
-    payload: { i, j }
-  };
-});
+gameSlice.actions.makeMove = createAction('game/makeMove', (i, j) => ({
+  payload: { i, j },
+}));
 
-export const { startNewGame, processMove, makeMove, calculateResult } = gameSlice.actions;
+export const {
+  startNewGame, processMove, makeMove, calculateResult,
+} = gameSlice.actions;
 
 export default gameSlice.reducer;

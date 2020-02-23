@@ -1,4 +1,6 @@
-import game, {startNewGame, makeMove, processMove, calculateResult } from './gameSlice';
+import game, {
+  startNewGame, makeMove, processMove, calculateResult,
+} from './gameSlice';
 import * as cnsts from '../../constants';
 
 describe('game reducer', () => {
@@ -10,11 +12,11 @@ describe('game reducer', () => {
         winLength: 3,
         cells: [],
         turns: 0,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: startNewGame.type,
-        payload: {}
-      })
+        payload: {},
+      }),
     ).toEqual({
       step: cnsts.STEP_GAME,
       size: 3,
@@ -25,7 +27,7 @@ describe('game reducer', () => {
         [null, null, null],
       ],
       turns: 0,
-      result: cnsts.RESULT_UNKNOWN
+      result: cnsts.RESULT_UNKNOWN,
     });
   });
 
@@ -41,11 +43,11 @@ describe('game reducer', () => {
           [null, null, null],
         ],
         turns: 0,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: processMove.type,
-        payload: { i: 0, j: 0 }
-      })
+        payload: { i: 0, j: 0 },
+      }),
     ).toEqual({
       step: cnsts.STEP_GAME,
       size: 3,
@@ -56,7 +58,7 @@ describe('game reducer', () => {
         [null, null, null],
       ],
       turns: 1,
-      result: cnsts.RESULT_UNKNOWN
+      result: cnsts.RESULT_UNKNOWN,
     });
   });
 
@@ -72,11 +74,11 @@ describe('game reducer', () => {
           [null, null, null],
         ],
         turns: 1,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: processMove.type,
-        payload: { i: 1, j: 1 }
-      })
+        payload: { i: 1, j: 1 },
+      }),
     ).toEqual({
       step: cnsts.STEP_GAME,
       size: 3,
@@ -87,7 +89,7 @@ describe('game reducer', () => {
         [null, null, null],
       ],
       turns: 2,
-      result: cnsts.RESULT_UNKNOWN
+      result: cnsts.RESULT_UNKNOWN,
     });
   });
 
@@ -103,11 +105,11 @@ describe('game reducer', () => {
           [null, null, null],
         ],
         turns: 1,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: startNewGame.type,
-        payload: {}
-      })
+        payload: {},
+      }),
     ).toEqual({
       step: cnsts.STEP_GAME,
       size: 3,
@@ -118,7 +120,7 @@ describe('game reducer', () => {
         [null, null, null],
       ],
       turns: 0,
-      result: cnsts.RESULT_UNKNOWN
+      result: cnsts.RESULT_UNKNOWN,
     });
   });
 
@@ -134,11 +136,11 @@ describe('game reducer', () => {
           [cnsts.SYMBOL_ZERO, cnsts.SYMBOL_CROSS, cnsts.NO_SYMBOL],
         ],
         turns: 8,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: calculateResult.type,
-        payload: {}
-      })
+        payload: {},
+      }),
     ).toEqual({
       step: cnsts.STEP_GAME,
       size: 3,
@@ -149,7 +151,7 @@ describe('game reducer', () => {
         [cnsts.SYMBOL_ZERO, cnsts.SYMBOL_CROSS, cnsts.NO_SYMBOL],
       ],
       turns: 8,
-      result: cnsts.RESULT_UNKNOWN
+      result: cnsts.RESULT_UNKNOWN,
     });
   });
 
@@ -165,11 +167,11 @@ describe('game reducer', () => {
           [cnsts.SYMBOL_ZERO, cnsts.SYMBOL_CROSS, cnsts.SYMBOL_ZERO],
         ],
         turns: 9,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: calculateResult.type,
-        payload: {}
-      })
+        payload: {},
+      }),
     ).toEqual({
       step: cnsts.STEP_RESULTS,
       size: 3,
@@ -180,7 +182,7 @@ describe('game reducer', () => {
         [cnsts.SYMBOL_ZERO, cnsts.SYMBOL_CROSS, cnsts.SYMBOL_ZERO],
       ],
       turns: 9,
-      result: cnsts.RESULT_TIE
+      result: cnsts.RESULT_TIE,
     });
   });
 
@@ -196,11 +198,11 @@ describe('game reducer', () => {
           [cnsts.NO_SYMBOL, cnsts.NO_SYMBOL, cnsts.NO_SYMBOL],
         ],
         turns: 5,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: calculateResult.type,
-        payload: {}
-      })
+        payload: {},
+      }),
     ).toEqual({
       step: cnsts.STEP_RESULTS,
       size: 3,
@@ -211,7 +213,7 @@ describe('game reducer', () => {
         [cnsts.NO_SYMBOL, cnsts.NO_SYMBOL, cnsts.NO_SYMBOL],
       ],
       turns: 5,
-      result: cnsts.RESULT_ZERO_WIN
+      result: cnsts.RESULT_ZERO_WIN,
     });
   });
 
@@ -227,11 +229,11 @@ describe('game reducer', () => {
           [cnsts.SYMBOL_ZERO, cnsts.NO_SYMBOL, cnsts.NO_SYMBOL],
         ],
         turns: 5,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: calculateResult.type,
-        payload: {}
-      })
+        payload: {},
+      }),
     ).toEqual({
       step: cnsts.STEP_RESULTS,
       size: 3,
@@ -242,7 +244,7 @@ describe('game reducer', () => {
         [cnsts.SYMBOL_ZERO, cnsts.NO_SYMBOL, cnsts.NO_SYMBOL],
       ],
       turns: 5,
-      result: cnsts.RESULT_ZERO_WIN
+      result: cnsts.RESULT_ZERO_WIN,
     });
   });
 
@@ -258,11 +260,11 @@ describe('game reducer', () => {
           [cnsts.SYMBOL_ZERO, cnsts.NO_SYMBOL, cnsts.NO_SYMBOL],
         ],
         turns: 5,
-        result: cnsts.RESULT_UNKNOWN
+        result: cnsts.RESULT_UNKNOWN,
       }, {
         type: calculateResult.type,
-        payload: {}
-      })
+        payload: {},
+      }),
     ).toEqual({
       step: cnsts.STEP_RESULTS,
       size: 3,
@@ -273,7 +275,7 @@ describe('game reducer', () => {
         [cnsts.SYMBOL_ZERO, cnsts.NO_SYMBOL, cnsts.NO_SYMBOL],
       ],
       turns: 5,
-      result: cnsts.RESULT_ZERO_WIN
+      result: cnsts.RESULT_ZERO_WIN,
     });
   });
 });

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { startNewGame } from '../features/game/gameSlice';
 import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../constants';
 
-const Menu = props => {
+const Menu = (props) => {
   const renderStartButton = () => {
     // TODO: ask @sg about refactoring that.
     if (props.step === STEP_WELCOME || props.step === STEP_RESULTS) {
@@ -16,7 +16,7 @@ const Menu = props => {
         </button>
       );
     }
-  }
+  };
 
   const renderResetButton = () => {
     if (props.step === STEP_GAME) {
@@ -26,7 +26,7 @@ const Menu = props => {
         </button>
       );
     }
-  }
+  };
 
   return (
     <div>
@@ -36,8 +36,6 @@ const Menu = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {step: state.game.step};
-};
+const mapStateToProps = (state) => ({ step: state.game.step });
 
 export default connect(mapStateToProps, { startNewGame })(Menu);

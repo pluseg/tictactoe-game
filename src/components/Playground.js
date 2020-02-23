@@ -5,11 +5,7 @@ import PlaygroundCell from './PlaygroundCell';
 
 class Playground extends React.Component {
   renderCells() {
-    return this.props.cells.map((row, i) => {
-      return row.map((cell, j) => {
-        return <PlaygroundCell key={`${i}_${j}`} value={cell} onClick={() => this.props.makeMove(i, j)} />;
-      });
-    })
+    return this.props.cells.map((row, i) => row.map((cell, j) => <PlaygroundCell key={`${i}_${j}`} value={cell} onClick={() => this.props.makeMove(i, j)} />));
   }
 
   render() {
@@ -21,11 +17,9 @@ class Playground extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cells: state.game.cells,
-    size: state.game.size
-  };
-};
+const mapStateToProps = (state) => ({
+  cells: state.game.cells,
+  size: state.game.size,
+});
 
-export default connect(mapStateToProps, {makeMove})(Playground);
+export default connect(mapStateToProps, { makeMove })(Playground);
