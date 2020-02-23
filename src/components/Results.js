@@ -1,20 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  RESULT_TIE, RESULT_CROSS_WIN, RESULT_ZERO_WIN, RESULT_UNKNOWN,
+  RESULT_TIE,
+  RESULT_CROSS_WIN,
+  RESULT_ZERO_WIN,
+  RESULT_UNKNOWN,
 } from '../constants';
 
-const Results = (props) => {
+const Results = props => {
   if (props.result === RESULT_UNKNOWN) {
     return null;
   }
 
   const renderStatus = () => {
     if (props.result === RESULT_TIE) {
-      return 'It\'s a TIE!';
-    } if (props.result === RESULT_ZERO_WIN) {
+      return "It's a TIE!";
+    }
+    if (props.result === RESULT_ZERO_WIN) {
       return 'ZEROs win!';
-    } if (props.result === RESULT_CROSS_WIN) {
+    }
+    if (props.result === RESULT_CROSS_WIN) {
       return 'CROSSes win!';
     }
   };
@@ -29,6 +34,6 @@ const Results = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({ result: state.game.result });
+const mapStateToProps = state => ({ result: state.game.result });
 
 export default connect(mapStateToProps)(Results);

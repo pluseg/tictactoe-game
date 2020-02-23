@@ -11,7 +11,9 @@ RUN npm install -g yarn
 RUN yarn global add create-react-app
 
 # install and cache app dependencies
-COPY package.json /app/package.json
+COPY package.json .
+COPY yarn.lock .
+
 RUN yarn install
 
 # start app
