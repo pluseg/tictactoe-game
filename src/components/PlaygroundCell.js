@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { SYMBOL_CROSS, SYMBOL_ZERO } from '../constants';
+
+const StyledPlaygroundCell = styled.div`
+  cursor: pointer;
+  text-align: center;
+  border: 1px #ddd solid;
+  padding: 10px;
+`;
 
 const PlaygroundCell = ({ value, onClick }) => {
   const renderCell = value => {
@@ -15,9 +23,9 @@ const PlaygroundCell = ({ value, onClick }) => {
   };
 
   return (
-    <div className="playground-cell" onClick={onClick}>
+    <StyledPlaygroundCell onClick={onClick}>
       {renderCell(value)}
-    </div>
+    </StyledPlaygroundCell>
   );
 };
 

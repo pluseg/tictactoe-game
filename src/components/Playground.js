@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { makeMove } from '../features/game/gameSlice';
 import PlaygroundCell from './PlaygroundCell';
+
+const StyledPlayground = styled.div`
+  display: grid;
+  grid-template-columns: ${props => `repeat(${props.size}, 1fr)`};
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  justify-items: stretch;
+  margin-top: 20px;
+`;
 
 class Playground extends React.Component {
   renderCells() {
@@ -19,12 +29,9 @@ class Playground extends React.Component {
 
   render() {
     return (
-      <div
-        className="playground"
-        style={{ gridTemplateColumns: `repeat(${this.props.size}, 1fr)` }}
-      >
+      <StyledPlayground size={this.props.size}>
         {this.renderCells()}
-      </div>
+      </StyledPlayground>
     );
   }
 }

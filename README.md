@@ -24,3 +24,5 @@ Written on React/Redux.
 8. ~Learn and use PropTypes in the project.~
 9. ~Add eslint && prettier~
 10. ~Add docker-compose support to avoid yarn version incompatibility.~
+11. ~Use styled-components.~
+12. Implement code splitting practices.

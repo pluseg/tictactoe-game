@@ -1,8 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { startNewGame } from '../features/game/gameSlice';
 import { STEP_WELCOME, STEP_GAME, STEP_RESULTS, SIZE } from '../constants';
+
+const SizeInput = styled.input.attrs(props => ({
+  type: 'text',
+  placeholder: 'Size',
+  width: props.width || '50px',
+}))`
+  width: ${props => props.width} !important;
+`;
 
 class Menu extends React.Component {
   state = { size: SIZE };
@@ -37,10 +46,7 @@ class Menu extends React.Component {
   render() {
     return (
       <div className="ui action input">
-        <input
-          className="game-size"
-          type="text"
-          placeholder="Size"
+        <SizeInput
           value={this.state.size}
           onChange={e =>
             this.setState({ size: parseInt(e.target.value) || '' })
