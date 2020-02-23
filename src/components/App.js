@@ -17,9 +17,7 @@ class App extends React.Component {
       default:
         return (
           <div>
-            <i className="asterisk loading icon" />
-            {' '}
-            Loading...
+            <i className="asterisk loading icon" /> Loading...
           </div>
         );
     }
@@ -43,6 +41,6 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ step: state.game.step });
+const mapStateToProps = state => ({ step: state.game.step });
 
 export default connect(mapStateToProps)(App);

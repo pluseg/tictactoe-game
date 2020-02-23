@@ -26,10 +26,7 @@ const Results = props => {
 
   return (
     <div>
-      <h2>
-        Game over!
-        {renderStatus()}
-      </h2>
+      <h2>Game over! {renderStatus()}</h2>
     </div>
   );
 };

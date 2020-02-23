@@ -28,10 +28,11 @@ const gameSlice = createSlice({
     startNewGame(state, action) {
       state.step = STEP_GAME;
       state.result = RESULT_UNKNOWN;
+      state.size = action.payload || SIZE;
       state.turns = 0;
-      state.cells = new Array(state.size).fill(NO_SYMBOL).map(
-        () => new Array(state.size).fill(NO_SYMBOL),
-      );
+      state.cells = new Array(state.size)
+        .fill(NO_SYMBOL)
+        .map(() => new Array(state.size).fill(NO_SYMBOL));
     },
     processMove: {
       reducer(state, action) {
@@ -45,7 +46,11 @@ const gameSlice = createSlice({
       },
     },
     calculateResult(state, action) {
-      const result = calculateResultHelper(state.cells, state.turns, state.winLength);
+      const result = calculateResultHelper(
+        state.cells,
+        state.turns,
+        state.winLength,
+      );
       if (result !== RESULT_UNKNOWN) {
         state.result = result;
         state.step = STEP_RESULTS;
@@ -59,7 +64,10 @@ gameSlice.actions.makeMove = createAction('game/makeMove', (i, j) => ({
 }));
 
 export const {
-  startNewGame, processMove, makeMove, calculateResult,
+  startNewGame,
+  processMove,
+  makeMove,
+  calculateResult,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

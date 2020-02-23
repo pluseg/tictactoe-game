@@ -1,41 +1,60 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startNewGame } from '../features/game/gameSlice';
-import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../constants';
+import { STEP_WELCOME, STEP_GAME, STEP_RESULTS, SIZE } from '../constants';
 
-const Menu = (props) => {
-  const renderStartButton = () => {
+class Menu extends React.Component {
+  state = { size: SIZE };
+
+  renderStartButton() {
     // TODO: ask @sg about refactoring that.
-    if (props.step === STEP_WELCOME || props.step === STEP_RESULTS) {
+    if (this.props.step === STEP_WELCOME || this.props.step === STEP_RESULTS) {
       return (
         <button
           className="positive ui button"
-          onClick={() => props.startNewGame()}
+          onClick={() => this.props.startNewGame(this.state.size)}
         >
           Start
         </button>
       );
     }
-  };
+  }
 
-  const renderResetButton = () => {
-    if (props.step === STEP_GAME) {
+  renderResetButton() {
+    if (this.props.step === STEP_GAME) {
       return (
-        <button className="ui button" onClick={() => props.startNewGame()}>
+        <button
+          className="ui button"
+          onClick={() => this.props.startNewGame(this.state.size)}
+        >
           Reset
         </button>
       );
     }
-  };
+  }
 
-  return (
-    <div>
-      {renderStartButton()}
-      {renderResetButton()}
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="ui action input">
+        <input
+          className="game-size"
+          type="text"
+          placeholder="Size"
+          value={this.state.size}
+          onChange={e =>
+            this.setState({ size: parseInt(e.target.value) || '' })
+          }
+        />
+        {this.renderStartButton()}
+        {this.renderResetButton()}
+      </div>
+    );
+  }
+}
 
-const mapStateToProps = (state) => ({ step: state.game.step });
+const mapStateToProps = state => ({ step: state.game.step });
 
-export default connect(mapStateToProps, { startNewGame })(Menu);
+export default connect(
+  mapStateToProps,
+  { startNewGame },
+)(Menu);
