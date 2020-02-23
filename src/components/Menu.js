@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { startNewGame } from '../features/game/gameSlice';
 import { STEP_WELCOME, STEP_GAME, STEP_RESULTS, SIZE } from '../constants';
@@ -20,14 +21,14 @@ class Menu extends React.Component {
     }
   }
 
-  renderResetButton() {
+  renderRestartButton() {
     if (this.props.step === STEP_GAME) {
       return (
         <button
           className="ui button"
           onClick={() => this.props.startNewGame(this.state.size)}
         >
-          Reset
+          Restart
         </button>
       );
     }
@@ -46,11 +47,16 @@ class Menu extends React.Component {
           }
         />
         {this.renderStartButton()}
-        {this.renderResetButton()}
+        {this.renderRestartButton()}
       </div>
     );
   }
 }
+
+Menu.propTypes = {
+  step: PropTypes.oneOf([STEP_WELCOME, STEP_GAME, STEP_RESULTS]).isRequired,
+  startNewGame: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({ step: state.game.step });
 

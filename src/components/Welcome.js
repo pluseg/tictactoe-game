@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Welcome = (props) => (
+const Welcome = () => (
   <div className="ui column grid">
     <div className="row">
       <div className="column">

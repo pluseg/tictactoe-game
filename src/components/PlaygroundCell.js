@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { SYMBOL_CROSS, SYMBOL_ZERO } from '../constants';
 
 const PlaygroundCell = ({ value, onClick }) => {
-  const renderCell = (value) => {
+  const renderCell = value => {
     switch (value) {
       case SYMBOL_CROSS:
         return <i className="massive blue close icon" />;
@@ -18,6 +19,11 @@ const PlaygroundCell = ({ value, onClick }) => {
       {renderCell(value)}
     </div>
   );
+};
+
+PlaygroundCell.propTypes = {
+  value: PropTypes.any,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PlaygroundCell;

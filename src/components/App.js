@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Playground from './Playground';
 import Welcome from './Welcome';
@@ -40,6 +41,10 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  step: PropTypes.oneOf([STEP_WELCOME, STEP_GAME, STEP_RESULTS]).isRequired,
+};
 
 const mapStateToProps = state => ({ step: state.game.step });
 
