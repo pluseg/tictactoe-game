@@ -1,4 +1,5 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
+import history from '../../history';
 import calculateResultHelper from './calculateResultHelpers';
 
 import {
@@ -33,13 +34,19 @@ const gameSlice = createSlice({
       state.cells = new Array(state.size)
         .fill(NO_SYMBOL)
         .map(() => new Array(state.size).fill(NO_SYMBOL));
+      history.push('/game');
     },
     processMove: {
       reducer(state, action) {
-        state.turns++;
-        const currentSymbol = state.turns % 2 ? SYMBOL_ZERO : SYMBOL_CROSS;
         const { i, j } = action.payload;
-        state.cells[i][j] = currentSymbol;
+        if (
+          state.cells[i][j] === NO_SYMBOL &&
+          state.result === RESULT_UNKNOWN
+        ) {
+          state.turns++;
+          const currentSymbol = state.turns % 2 ? SYMBOL_ZERO : SYMBOL_CROSS;
+          state.cells[i][j] = currentSymbol;
+        }
       },
       prepare(i, j) {
         return { payload: { i, j } };
@@ -54,6 +61,7 @@ const gameSlice = createSlice({
       if (result !== RESULT_UNKNOWN) {
         state.result = result;
         state.step = STEP_RESULTS;
+        history.push('/results');
       }
     },
   },
