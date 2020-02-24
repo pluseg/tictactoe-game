@@ -11,6 +11,12 @@ import Results from './Results';
 import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../constants';
 
 class App extends React.Component {
+  componentDidMount() {
+    if (this.props.step === STEP_WELCOME) {
+      history.push('/');
+    }
+  }
+
   render() {
     return (
       <Router history={history}>
