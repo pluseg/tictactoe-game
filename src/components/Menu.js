@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -13,51 +13,44 @@ const SizeInput = styled.input.attrs(props => ({
   width: ${props => props.width} !important;
 `;
 
-class Menu extends React.Component {
-  state = { size: SIZE };
+const Menu = ({ step, startNewGame }) => {
+  const [size, setSize] = useState(SIZE);
 
-  renderStartButton() {
+  const renderStartButton = () => {
     // TODO: ask @sg about refactoring that.
-    if (this.props.step === STEP_WELCOME || this.props.step === STEP_RESULTS) {
+    if (step === STEP_WELCOME || step === STEP_RESULTS) {
       return (
         <button
           className="positive ui button"
-          onClick={() => this.props.startNewGame(this.state.size)}
+          onClick={() => startNewGame(size)}
         >
           Start
         </button>
       );
     }
-  }
+  };
 
-  renderRestartButton() {
-    if (this.props.step === STEP_GAME) {
+  const renderRestartButton = () => {
+    if (step === STEP_GAME) {
       return (
-        <button
-          className="ui button"
-          onClick={() => this.props.startNewGame(this.state.size)}
-        >
+        <button className="ui button" onClick={() => startNewGame(size)}>
           Restart
         </button>
       );
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="ui action input">
-        <SizeInput
-          value={this.state.size}
-          onChange={e =>
-            this.setState({ size: parseInt(e.target.value) || '' })
-          }
-        />
-        {this.renderStartButton()}
-        {this.renderRestartButton()}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="ui action input">
+      <SizeInput
+        value={size}
+        onChange={e => setSize(parseInt(e.target.value) || '')}
+      />
+      {renderStartButton()}
+      {renderRestartButton()}
+    </div>
+  );
+};
 
 Menu.propTypes = {
   step: PropTypes.oneOf([STEP_WELCOME, STEP_GAME, STEP_RESULTS]).isRequired,
