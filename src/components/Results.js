@@ -23,11 +23,16 @@ const Results = ({ result }) => {
     if (result === RESULT_CROSS_WIN) {
       return 'CROSSes win!';
     }
+
+    return null;
   };
 
   return (
     <div>
-      <h2>Game over! {renderStatus()}</h2>
+      <h2>
+        Game over!
+        {renderStatus()}
+      </h2>
     </div>
   );
 };
@@ -38,9 +43,9 @@ Results.propTypes = {
     RESULT_CROSS_WIN,
     RESULT_ZERO_WIN,
     RESULT_UNKNOWN,
-  ]),
+  ]).isRequired,
 };
 
-const mapStateToProps = state => ({ result: state.game.result });
+const mapStateToProps = (state) => ({ result: state.game.result });
 
 export default connect(mapStateToProps)(Results);

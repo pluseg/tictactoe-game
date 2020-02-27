@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { SYMBOL_CROSS, SYMBOL_ZERO } from '../constants';
+import { SYMBOL_CROSS, SYMBOL_ZERO, NO_SYMBOL } from '../constants';
 
 const StyledPlaygroundCell = styled.div`
   cursor: pointer;
@@ -11,8 +11,8 @@ const StyledPlaygroundCell = styled.div`
 `;
 
 const PlaygroundCell = ({ value, onClick }) => {
-  const renderCell = value => {
-    switch (value) {
+  const renderCell = (symbol) => {
+    switch (symbol) {
       case SYMBOL_CROSS:
         return <i className="massive blue close icon" />;
       case SYMBOL_ZERO:
@@ -30,7 +30,7 @@ const PlaygroundCell = ({ value, onClick }) => {
 };
 
 PlaygroundCell.propTypes = {
-  value: PropTypes.any,
+  value: PropTypes.oneOf([NO_SYMBOL, SYMBOL_ZERO, SYMBOL_CROSS]).isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

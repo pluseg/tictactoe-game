@@ -7,7 +7,7 @@ import PlaygroundCell from './PlaygroundCell';
 
 const StyledPlayground = styled.div`
   display: grid;
-  grid-template-columns: ${props => `repeat(${props.size}, 1fr)`};
+  grid-template-columns: ${(props) => `repeat(${props.size}, 1fr)`};
   grid-auto-rows: 1fr;
   align-items: stretch;
   justify-items: stretch;
@@ -16,22 +16,21 @@ const StyledPlayground = styled.div`
 
 class Playground extends React.Component {
   renderCells() {
-    return this.props.cells.map((row, i) =>
-      row.map((cell, j) => (
-        <PlaygroundCell
-          key={`${i}_${j}`}
-          value={cell}
-          onClick={() => this.props.makeMove(i, j)}
-        />
-      )),
-    );
+    const { cells, makeMoveConnect } = this.props;
+    return cells.map((row, i) => row.map((cell, j) => (
+      <PlaygroundCell
+          // eslint-disable-next-line react/no-array-index-key
+        key={`${i}_${j}`}
+        value={cell}
+        onClick={() => makeMoveConnect(i, j)}
+      />
+    )));
   }
 
   render() {
+    const { size } = this.props;
     return (
-      <StyledPlayground size={this.props.size}>
-        {this.renderCells()}
-      </StyledPlayground>
+      <StyledPlayground size={size}>{this.renderCells()}</StyledPlayground>
     );
   }
 }
@@ -39,15 +38,19 @@ class Playground extends React.Component {
 Playground.propTypes = {
   size: PropTypes.number.isRequired,
   cells: PropTypes.arrayOf(PropTypes.array),
-  makeMove: PropTypes.func.isRequired,
+  makeMoveConnect: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+Playground.defaultProps = {
+  cells: [[]],
+};
+
+const mapStateToProps = (state) => ({
   cells: state.game.cells,
   size: state.game.size,
 });
 
 export default connect(
   mapStateToProps,
-  { makeMove },
+  { makeMoveConnect: makeMove },
 )(Playground);

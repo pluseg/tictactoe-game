@@ -12,7 +12,8 @@ import { STEP_WELCOME, STEP_GAME, STEP_RESULTS } from '../constants';
 
 class App extends React.Component {
   componentDidMount() {
-    if (this.props.step === STEP_WELCOME) {
+    const { step } = this.props;
+    if (step === STEP_WELCOME) {
       history.push('/');
     }
   }
@@ -49,6 +50,6 @@ App.propTypes = {
   step: PropTypes.oneOf([STEP_WELCOME, STEP_GAME, STEP_RESULTS]).isRequired,
 };
 
-const mapStateToProps = state => ({ step: state.game.step });
+const mapStateToProps = (state) => ({ step: state.game.step });
 
 export default connect(mapStateToProps)(App);

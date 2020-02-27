@@ -22,6 +22,7 @@ const INITIAL_STATE = {
   result: RESULT_UNKNOWN,
 };
 
+/* eslint no-param-reassign: 0 */
 const gameSlice = createSlice({
   name: 'game',
   initialState: INITIAL_STATE,
@@ -40,10 +41,10 @@ const gameSlice = createSlice({
       reducer(state, action) {
         const { i, j } = action.payload;
         if (
-          state.cells[i][j] === NO_SYMBOL &&
-          state.result === RESULT_UNKNOWN
+          state.cells[i][j] === NO_SYMBOL
+          && state.result === RESULT_UNKNOWN
         ) {
-          state.turns++;
+          state.turns += 1;
           const currentSymbol = state.turns % 2 ? SYMBOL_ZERO : SYMBOL_CROSS;
           state.cells[i][j] = currentSymbol;
         }
@@ -52,7 +53,7 @@ const gameSlice = createSlice({
         return { payload: { i, j } };
       },
     },
-    calculateResult(state, action) {
+    calculateResult(state) {
       const result = calculateResultHelper(
         state.cells,
         state.turns,
@@ -66,6 +67,7 @@ const gameSlice = createSlice({
     },
   },
 });
+/* eslint no-param-reassign: 2 */
 
 gameSlice.actions.makeMove = createAction('game/makeMove', (i, j) => ({
   payload: { i, j },

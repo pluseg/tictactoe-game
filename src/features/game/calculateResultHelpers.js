@@ -7,20 +7,23 @@ import {
   RESULT_UNKNOWN,
 } from '../../constants';
 
-export default (cells, turns, winLength) => {
-  const symbol = findRepeatedSymbol(cells, winLength);
-
-  switch (symbol) {
-    case SYMBOL_ZERO:
-      return RESULT_ZERO_WIN;
-    case SYMBOL_CROSS:
-      return RESULT_CROSS_WIN;
-    default:
-      if (turns === cells[0].length ** 2) {
-        return RESULT_TIE;
+export const findRepeatedSymbolSequence = (arr, requiredLength) => {
+  for (let i = 0; i < arr.length - requiredLength + 1; i += 1) {
+    let repetitions = 0;
+    const value = arr[i];
+    for (let j = i; j < i + requiredLength; j += 1) {
+      if (arr[j] !== value) {
+        break;
       }
-      return RESULT_UNKNOWN;
+      repetitions += 1;
+    }
+
+    if (repetitions === requiredLength) {
+      return value;
+    }
   }
+
+  return null;
 };
 
 export const findRepeatedSymbol = (cells, requiredLength) => {
@@ -28,7 +31,7 @@ export const findRepeatedSymbol = (cells, requiredLength) => {
   const diagonals = { leftUpper: [], rightUpper: [] };
 
   let symbol;
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < size; i += 1) {
     // Check row
     symbol = findRepeatedSymbolSequence(cells[i], requiredLength);
     if (symbol !== null) {
@@ -37,7 +40,7 @@ export const findRepeatedSymbol = (cells, requiredLength) => {
 
     // Check column
     const column = [];
-    for (let j = 0; j < size; j++) {
+    for (let j = 0; j < size; j += 1) {
       column.push(cells[j][i]);
     }
 
@@ -64,21 +67,18 @@ export const findRepeatedSymbol = (cells, requiredLength) => {
   return null;
 };
 
-export const findRepeatedSymbolSequence = (arr, requiredLength) => {
-  for (let i = 0; i < arr.length - requiredLength + 1; i++) {
-    let repetitions = 0;
-    const value = arr[i];
-    for (let j = i; j < i + requiredLength; j++) {
-      if (arr[j] !== value) {
-        break;
+export default (cells, turns, winLength) => {
+  const symbol = findRepeatedSymbol(cells, winLength);
+
+  switch (symbol) {
+    case SYMBOL_ZERO:
+      return RESULT_ZERO_WIN;
+    case SYMBOL_CROSS:
+      return RESULT_CROSS_WIN;
+    default:
+      if (turns === cells[0].length ** 2) {
+        return RESULT_TIE;
       }
-      repetitions++;
-    }
-
-    if (repetitions === requiredLength) {
-      return value;
-    }
+      return RESULT_UNKNOWN;
   }
-
-  return null;
 };

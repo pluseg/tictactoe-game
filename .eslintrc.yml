@@ -1,6 +1,7 @@
 env:
   browser: true
   es6: true
+  jest: true
 extends:
   - 'plugin:react/recommended'
   - airbnb
@@ -14,4 +15,6 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-rules: {}
+rules:
+  react/jsx-filename-extension: [1, { 'extensions': ['.js', '.jsx'] }]
+  import/no-extraneous-dependencies: ['error', { 'devDependencies': true }]
