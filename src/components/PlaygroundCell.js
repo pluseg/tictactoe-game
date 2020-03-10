@@ -5,33 +5,40 @@ import { SYMBOL_CROSS, SYMBOL_ZERO, NO_SYMBOL } from '../constants';
 
 const StyledPlaygroundCell = styled.div`
   cursor: pointer;
+  flex: ${props => `${props.width}%`};
   text-align: center;
-  border: 1px #ddd solid;
   padding: 10px;
+  width: ${props => `${props.width}%`};
 `;
 
-const PlaygroundCell = ({ value, onClick }) => {
-  const renderCell = (symbol) => {
+const SymbolImage = styled.img`
+  width: 100%;
+  max-width: 100%;
+`;
+
+const PlaygroundCell = ({ value, onClick, width }) => {
+  const renderCell = symbol => {
     switch (symbol) {
       case SYMBOL_CROSS:
-        return <i className="massive blue close icon" />;
+        return <SymbolImage src="/img/cross.svg" />;
       case SYMBOL_ZERO:
-        return <i className="massive orange dot circle icon" />;
+        return <SymbolImage src="/img/zero.svg" />;
       default:
-        return <i className="massive question disabled icon" />;
+        return <SymbolImage src="/img/empty.svg" />;
     }
   };
 
   return (
-    <StyledPlaygroundCell onClick={onClick}>
+    <StyledPlaygroundCell onClick={onClick} width={width}>
       {renderCell(value)}
     </StyledPlaygroundCell>
   );
 };
 
 PlaygroundCell.propTypes = {
-  value: PropTypes.oneOf([NO_SYMBOL, SYMBOL_ZERO, SYMBOL_CROSS]).isRequired,
+  value: PropTypes.oneOf([NO_SYMBOL, SYMBOL_ZERO, SYMBOL_CROSS]),
   onClick: PropTypes.func.isRequired,
+  width: PropTypes.number,
 };
 
 export default PlaygroundCell;

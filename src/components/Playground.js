@@ -6,31 +6,38 @@ import { makeMove } from '../features/game/gameSlice';
 import PlaygroundCell from './PlaygroundCell';
 
 const StyledPlayground = styled.div`
-  display: grid;
-  grid-template-columns: ${(props) => `repeat(${props.size}, 1fr)`};
-  grid-auto-rows: 1fr;
-  align-items: stretch;
-  justify-items: stretch;
-  margin-top: 20px;
+  width: 100%;
+  margin: 20px auto 0;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 class Playground extends React.Component {
   renderCells() {
-    const { cells, makeMoveConnect } = this.props;
-    return cells.map((row, i) => row.map((cell, j) => (
-      <PlaygroundCell
+    const { size, cells, makeMoveConnect } = this.props;
+    const width = 100 / size;
+
+    return cells.map((row, i) =>
+      row.map((cell, j) => (
+        <PlaygroundCell
           // eslint-disable-next-line react/no-array-index-key
-        key={`${i}_${j}`}
-        value={cell}
-        onClick={() => makeMoveConnect(i, j)}
-      />
-    )));
+          key={`${i}_${j}`}
+          value={cell}
+          width={width}
+          onClick={() => makeMoveConnect(i, j)}
+        />
+      )),
+    );
   }
 
   render() {
-    const { size } = this.props;
     return (
-      <StyledPlayground size={size}>{this.renderCells()}</StyledPlayground>
+      <StyledPlayground>
+        <Container>{this.renderCells()}</Container>
+      </StyledPlayground>
     );
   }
 }
@@ -45,12 +52,11 @@ Playground.defaultProps = {
   cells: [[]],
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   cells: state.game.cells,
   size: state.game.size,
 });
 
-export default connect(
-  mapStateToProps,
-  { makeMoveConnect: makeMove },
-)(Playground);
+export default connect(mapStateToProps, { makeMoveConnect: makeMove })(
+  Playground,
+);

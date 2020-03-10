@@ -23,11 +23,7 @@ class App extends React.Component {
       <Router history={history}>
         <div className="ui container">
           <h1>Tic Tac Toe Game</h1>
-          <div className="ui grid">
-            <div className="four wide column">
-              <Menu />
-            </div>
-          </div>
+          <Menu />
           <Switch>
             <Route path="/game">
               <Playground />
@@ -50,6 +46,6 @@ App.propTypes = {
   step: PropTypes.oneOf([STEP_WELCOME, STEP_GAME, STEP_RESULTS]).isRequired,
 };
 
-const mapStateToProps = (state) => ({ step: state.game.step });
+const mapStateToProps = state => ({ step: state.game.step });
 
 export default connect(mapStateToProps)(App);

@@ -7,6 +7,32 @@ import {
   RESULT_ZERO_WIN,
   RESULT_UNKNOWN,
 } from '../constants';
+import styled from 'styled-components';
+
+const StyledResults = styled.div`
+  background-color: aqua;
+  border-radius: 10px;
+  border: 15px solid rgba(255, 255, 255, 0.62);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-right: -50%;
+  padding: 10px 50px;
+  text-align: center;
+`;
+
+const Title = styled.p`
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+`;
+
+const Status = styled.p`
+  font-size: 2em;
+  font-weight: 800;
+  padding: 0 0 15px 0;
+`;
 
 const Results = ({ result }) => {
   if (result === RESULT_UNKNOWN) {
@@ -18,22 +44,20 @@ const Results = ({ result }) => {
       return "It's a TIE!";
     }
     if (result === RESULT_ZERO_WIN) {
-      return 'ZEROs win!';
+      return 'O O O O O O win!';
     }
     if (result === RESULT_CROSS_WIN) {
-      return 'CROSSes win!';
+      return 'X X X X X X win!';
     }
 
     return null;
   };
 
   return (
-    <div>
-      <h2>
-        Game over!
-        {renderStatus()}
-      </h2>
-    </div>
+    <StyledResults>
+      <Title>Game over</Title>
+      <Status>{renderStatus()}</Status>
+    </StyledResults>
   );
 };
 
@@ -46,6 +70,6 @@ Results.propTypes = {
   ]).isRequired,
 };
 
-const mapStateToProps = (state) => ({ result: state.game.result });
+const mapStateToProps = state => ({ result: state.game.result });
 
 export default connect(mapStateToProps)(Results);
