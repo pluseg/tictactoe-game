@@ -20,9 +20,11 @@ Written on React/Redux.
 4. ~Write some tests with Redux Toolkit!~
 5. ~Try to use Saga instead of Thunk.~
 6. ~Improve logic of displaying different game steps/states in <App />.~
-7. Implement calculation result logic for case with SIZE != 3 ~plus add an input for getting SIZE from user~.
+7. ~Implement calculation result logic for case with SIZE != 3 plus add an input for getting SIZE from user~.
 8. ~Learn and use PropTypes in the project.~
 9. ~Add eslint && prettier~
 10. ~Add docker-compose support to avoid yarn version incompatibility.~
 11. ~Use styled-components.~
 12. Implement code splitting practices.
+13. ~Implement adaptive + responsive markup.~
+14. Rewrite with Typescript.
