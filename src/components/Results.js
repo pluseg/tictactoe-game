@@ -18,7 +18,7 @@ const StyledResults = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   margin-right: -50%;
-  padding: 10px 50px;
+  padding: 10px 20px;
   text-align: center;
 `;
 

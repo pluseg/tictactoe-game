@@ -6,13 +6,19 @@ import { makeMove } from '../features/game/gameSlice';
 import PlaygroundCell from './PlaygroundCell';
 
 const StyledPlayground = styled.div`
-  width: 100%;
-  margin: 20px auto 0;
+  width: 70vw;
+  height: 70vw;
+  min-width: 300px;
+  min-height: 300px;
+  max-width: calc(100vh - 110px);
+  max-height: calc(100vh - 110px);
+  margin: 0 auto;
 `;
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
 `;
 
 class Playground extends React.Component {

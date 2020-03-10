@@ -31,6 +31,7 @@ const gameSlice = createSlice({
       state.step = STEP_GAME;
       state.result = RESULT_UNKNOWN;
       state.size = action.payload || SIZE;
+      state.winLength = state.size > 3 ? 5 : 3;
       state.turns = 0;
       state.cells = new Array(state.size)
         .fill(NO_SYMBOL)
@@ -41,8 +42,8 @@ const gameSlice = createSlice({
       reducer(state, action) {
         const { i, j } = action.payload;
         if (
-          state.cells[i][j] === NO_SYMBOL
-          && state.result === RESULT_UNKNOWN
+          state.cells[i][j] === NO_SYMBOL &&
+          state.result === RESULT_UNKNOWN
         ) {
           state.turns += 1;
           const currentSymbol = state.turns % 2 ? SYMBOL_ZERO : SYMBOL_CROSS;

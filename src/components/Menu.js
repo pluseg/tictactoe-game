@@ -9,10 +9,8 @@ const StyledMenu = styled.div`
   margin: 0 0 15px 0;
 `;
 
-const SizeInput = styled.input.attrs(props => ({
-  width: props.width || '50px',
-}))`
-  width: ${props => props.width} !important;
+const SizeSelect = styled.select`
+  margin: 0 10px 0 0;
 `;
 
 const Menu = ({ step, startNewGameConnect }) => {
@@ -24,13 +22,12 @@ const Menu = ({ step, startNewGameConnect }) => {
     }
 
     return (
-      <button
-        type="button"
+      <div
         className="positive ui button"
         onClick={() => startNewGameConnect(size)}
       >
         Start
-      </button>
+      </div>
     );
   };
 
@@ -40,25 +37,29 @@ const Menu = ({ step, startNewGameConnect }) => {
     }
 
     return (
-      <button
-        type="button"
-        className="ui button"
-        onClick={() => startNewGameConnect(size)}
-      >
+      <div className="ui button" onClick={() => startNewGameConnect(size)}>
         Restart
-      </button>
+      </div>
     );
   };
 
   return (
     <StyledMenu>
-      <div className="ui action input">
-        <SizeInput
-          value={size}
-          onChange={e => setSize(parseInt(e.target.value, 10) || '')}
-          type="text"
-          placeholder="Size"
-        />
+      <div className="ui input">
+        <SizeSelect
+          className="ui compact selection dropdown"
+          onChange={e => setSize(parseInt(e.target.value, 10) || SIZE)}
+        >
+          <option selected={size === 3} value="3">
+            3 x 3 (3 in row)
+          </option>
+          <option selected={size === 15} value="15">
+            15 x 15 (5 in row)
+          </option>
+          <option selected={size === 19} value="19">
+            19 x 19 (5 in row)
+          </option>
+        </SizeSelect>
         {renderStartButton()}
         {renderRestartButton()}
       </div>

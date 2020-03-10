@@ -9,8 +9,12 @@ import {
 
 export const findRepeatedSymbolSequence = (arr, requiredLength) => {
   for (let i = 0; i < arr.length - requiredLength + 1; i += 1) {
-    let repetitions = 0;
     const value = arr[i];
+    if (value === null) {
+      continue;
+    }
+
+    let repetitions = 0;
     for (let j = i; j < i + requiredLength; j += 1) {
       if (arr[j] !== value) {
         break;

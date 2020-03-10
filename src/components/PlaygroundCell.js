@@ -7,7 +7,8 @@ const StyledPlaygroundCell = styled.div`
   cursor: pointer;
   flex: ${props => `0 1 ${props.width}%`};
   text-align: center;
-  padding: 10px;
+  padding: 0.2vw;
+  height: 0;
 `;
 
 const SymbolImage = styled.img`
