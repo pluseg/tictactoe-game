@@ -18,7 +18,7 @@ const Container = styled.div`
 class Playground extends React.Component {
   renderCells() {
     const { size, cells, makeMoveConnect } = this.props;
-    const width = 100 / size;
+    const cellWidth = 100 / size;
 
     return cells.map((row, i) =>
       row.map((cell, j) => (
@@ -26,7 +26,7 @@ class Playground extends React.Component {
           // eslint-disable-next-line react/no-array-index-key
           key={`${i}_${j}`}
           value={cell}
-          width={width}
+          width={cellWidth}
           onClick={() => makeMoveConnect(i, j)}
         />
       )),

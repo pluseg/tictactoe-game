@@ -64,6 +64,29 @@ export const findRepeatedSymbol = (cells, requiredLength) => {
     return symbol;
   }
 
+  // Check additional diagonals (excluding main ones as they were already checked above)
+  let additionalDiagonals = [];
+  for (let i = 1; i < size; i += 1) {
+    // [1,0] -> [1, 0], [2, 1], [3, 2], ..., [size - 1, size - 1 - i]
+    additionalDiagonals = [[], [], [], []];
+    for (let j = 0; j < size - i; j += 1) {
+      additionalDiagonals[0].push(cells[i + j][j]);
+      additionalDiagonals[1].push(cells[j][i + j]);
+      additionalDiagonals[2].push(cells[size - 1 - i - j][j]);
+      additionalDiagonals[3].push(cells[size - 1 - j][i + j]);
+    }
+
+    for (let j = 0; j <= 3; j += 1) {
+      let symbol = findRepeatedSymbolSequence(
+        additionalDiagonals[j],
+        requiredLength,
+      );
+      if (symbol !== null) {
+        return symbol;
+      }
+    }
+  }
+
   return null;
 };
 

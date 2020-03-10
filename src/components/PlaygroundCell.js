@@ -5,10 +5,9 @@ import { SYMBOL_CROSS, SYMBOL_ZERO, NO_SYMBOL } from '../constants';
 
 const StyledPlaygroundCell = styled.div`
   cursor: pointer;
-  flex: ${props => `${props.width}%`};
+  flex: ${props => `0 1 ${props.width}%`};
   text-align: center;
   padding: 10px;
-  width: ${props => `${props.width}%`};
 `;
 
 const SymbolImage = styled.img`

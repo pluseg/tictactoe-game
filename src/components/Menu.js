@@ -10,8 +10,6 @@ const StyledMenu = styled.div`
 `;
 
 const SizeInput = styled.input.attrs(props => ({
-  type: 'text',
-  placeholder: 'Size',
   width: props.width || '50px',
 }))`
   width: ${props => props.width} !important;
@@ -58,6 +56,8 @@ const Menu = ({ step, startNewGameConnect }) => {
         <SizeInput
           value={size}
           onChange={e => setSize(parseInt(e.target.value, 10) || '')}
+          type="text"
+          placeholder="Size"
         />
         {renderStartButton()}
         {renderRestartButton()}
